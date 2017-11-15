@@ -18,18 +18,18 @@ function has23(arr){
     }
 }
 
-function fix23(arr){
+function fix23(arr) {
     var firstNum = arr[0];
     var secondNum = arr[1];
     var thirdNum = arr[2];
-    if(firstNum == 2 && secondNum == 3){
+    if (firstNum == 2 && secondNum == 3) {
         arr[1] = 0;
         return arr;
     }
-    if(secondNum == 2 && thirdNum == 3){
+    if (secondNum == 2 && thirdNum == 3) {
         arr[2] = 0;
         return arr;
-    }else{
+    } else {
         return arr;
     }
 }
@@ -87,34 +87,52 @@ function evenlySpaced(a,b,c){
     }
 }
 
+function getSandwich(string) {
 
+    var firstBread = string.indexOf("bread");
+    var lastBread = string.lastIndexOf("bread");
 
+    if (firstBread == -1) {
+        return "";
+    }
 
-
-
-function getSandwich(string){
-   var answer = "";
-   for(var i = 0; i <= string.length; i++){
-        if(string.indexOf(i) == "bread" && string.lastIndexOf(i) == "bread"){
-            answer = string - i;
-        }
-   }
-   return answer;
+    if (firstBread == lastBread) {
+        return "";
+    }
+    return string.substring(firstBread + 5, lastBread);
 }
 
+function canBalance(arr){
+    var sum1 = 0;
+    var sum2 = 0;
 
+    for(var i = 0; i<arr.length;i++) {
+        sum1 += arr[i];
 
-
-
-
-function countClumps (arr){
-    var count = 0;
-    for(var i = 0; i <= arr.length; i++){
-        if(arr[i] == arr[i+1]){
-            count += 1;
-            return count;
+        for(var j = i+1  ;j<arr.length;j++) {
+            sum2 += arr[j];
         }
+        if(sum1==sum2){
+            return true;
+        }
+        sum2=0;
     }
+    return false;
+}
+
+function countClumps(arr){
+    var clumps = 0;
+
+    for(var i = 0; i<arr.length;i++) {
+
+        if(arr[i]==arr[i+1]) {
+            i++;
+            clumps += 1;
+        }
+        if(arr[i]==arr[i+1]==arr[i+2])
+            return clumps;
+    }
+    return clumps;
 }
 
 
@@ -130,5 +148,9 @@ function tester() {
     document.getElementById("output4").innerHTML = countYZ();
     document.getElementById("output5").innerHTML = endOther();
     document.getElementById("output6").innerHTML = starOut();
-    document.getElementById("output7").innerHTML = countClumps();
+    document.getElementById("output7").innerHTML = evenlySpaced();
+    document.getElementById("output8").innerHTML = getSandwich();
+    document.getElementById("output9").innerHTML = canBalance();
+    document.getElementById("output10").innerHTML = countClumps();
+
 }
